@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JindAI — Download</title>
+  <style>
+    :root {
+      --bg:        #0f1117;
+      --surface:   #1a1d27;
+      --border:    #2a2d3e;
+      --accent:    #6c8eff;
+      --accent2:   #a78bfa;
+      --text:      #e2e8f0;
+      --muted:     #8892a4;
+      --success:   #34d399;
+      --radius:    12px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── Nav ─────────────────────────────────────────── */
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky; top: 0; background: var(--bg); z-index: 100;
+    }
+    .logo { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.02em; }
+    .logo span { color: var(--accent); }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--text); }
+
+    /* ── Hero ────────────────────────────────────────── */
+    .hero {
+      text-align: center;
+      padding: 5rem 1.5rem 3rem;
+      max-width: 700px; margin: 0 auto;
+    }
+    .badge {
+      display: inline-block;
+      background: rgba(108,142,255,.15);
+      color: var(--accent);
+      border: 1px solid rgba(108,142,255,.3);
+      border-radius: 999px;
+      padding: .25rem .9rem;
+      font-size: .78rem; font-weight: 600;
+      letter-spacing: .04em;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -.03em;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+    h1 span { color: var(--accent); }
+    .subtitle {
+      font-size: 1.1rem; color: var(--muted);
+      max-width: 520px; margin: 0 auto 2.5rem;
+    }
+
+    /* ── Download buttons ────────────────────────────── */
+    .download-grid {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      justify-content: center; margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: .6rem;
+      padding: .8rem 1.6rem; border-radius: var(--radius);
+      font-size: .95rem; font-weight: 600; cursor: pointer;
+      text-decoration: none; transition: all .15s;
+    }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+      border: 1px solid transparent;
+    }
+    .btn-primary:hover { background: #7fa0ff; transform: translateY(-1px); }
+    .btn-secondary {
+      background: var(--surface); color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+    .note { font-size: .78rem; color: var(--muted); margin-top: .5rem; }
+
+    /* ── Requirements strip ──────────────────────────── */
+    .req-strip {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: .75rem 2rem;
+      display: flex; justify-content: center; gap: 2.5rem;
+      font-size: .82rem; color: var(--muted);
+      flex-wrap: wrap;
+    }
+    .req-strip span { display: flex; align-items: center; gap: .4rem; }
+
+    /* ── Content sections ────────────────────────────── */
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+    section:last-of-type { border-bottom: none; }
+    h2 {
+      font-size: 1.5rem; font-weight: 700;
+      margin-bottom: 1.5rem; color: var(--text);
+    }
+    h2 .icon { margin-right: .4rem; }
+
+    /* ── Install steps ───────────────────────────────── */
+    .steps { display: flex; flex-direction: column; gap: 1rem; }
+    .step {
+      display: flex; gap: 1.2rem; align-items: flex-start;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.2rem 1.4rem;
+    }
+    .step-num {
+      flex-shrink: 0;
+      width: 2rem; height: 2rem;
+      background: rgba(108,142,255,.15);
+      color: var(--accent);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .9rem;
+    }
+    .step-body h3 { font-size: .95rem; font-weight: 600; margin-bottom: .25rem; }
+    .step-body p  { font-size: .88rem; color: var(--muted); }
+    code {
+      background: rgba(255,255,255,.08);
+      padding: .1em .4em; border-radius: 4px;
+      font-family: "SF Mono", "Fira Code", monospace;
+      font-size: .85em;
+    }
+
+    /* ── CLI section ─────────────────────────────────── */
+    .cli-block {
+      background: #0d0f18;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      font-family: "SF Mono", "Fira Code", monospace;
+      font-size: .88rem;
+      line-height: 1.9;
+      overflow-x: auto;
+    }
+    .cli-block .prompt { color: var(--accent2); user-select: none; }
+    .cli-block .cmd    { color: var(--text); }
+    .cli-block .cmt    { color: #4a5568; }
+
+    /* ── FAQ / Support ───────────────────────────────── */
+    .faq { display: flex; flex-direction: column; gap: .75rem; }
+    details {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    summary {
+      padding: 1rem 1.4rem;
+      font-weight: 600; font-size: .95rem;
+      cursor: pointer; list-style: none;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    summary::after { content: "+"; color: var(--accent); font-size: 1.2rem; }
+    details[open] summary::after { content: "−"; }
+    details p {
+      padding: 0 1.4rem 1.2rem;
+      color: var(--muted); font-size: .9rem;
+    }
+
+    /* ── Footer ──────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 2.5rem 1rem;
+      font-size: .8rem; color: var(--muted);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<!-- ── Navigation ─────────────────────────────────────────── -->
+<nav>
+  <div class="logo">Jind<span>AI</span></div>
+  <ul>
+    <li><a href="#install">Install</a></li>
+    <li><a href="#cli">CLI</a></li>
+    <li><a href="#support">Support</a></li>
+    <li><a href="https://github.com/kul1/jindai_download/releases">Releases</a></li>
+  </ul>
+</nav>
+
+<!-- ── Hero ───────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="badge">macOS · Latest Release</div>
+  <h1>Your AI assistant,<br /><span>right on your desktop</span></h1>
+  <p class="subtitle">
+    JindAI brings powerful AI models to a native macOS window and CLI —
+    fast, private, and always at your fingertips.
+  </p>
+
+  <div class="download-grid">
+    <a class="btn btn-primary"
+       href="https://github.com/kul1/jindai_download/releases/latest/download/JindAI-latest.dmg">
+      ⬇ Download for Mac (Apple Silicon)
+    </a>
+    <a class="btn btn-secondary"
+       href="https://github.com/kul1/jindai_download/releases/latest">
+      All releases →
+    </a>
+  </div>
+  <p class="note">macOS 13 Ventura or later · Apple Silicon &amp; Intel · Free</p>
+</div>
+
+<!-- ── Requirements strip ─────────────────────────────────── -->
+<div class="req-strip">
+  <span>🍎 macOS 13+</span>
+  <span>💾 ~50 MB</span>
+  <span>🔑 Requires API key (OpenCode / Anthropic)</span>
+  <span>🖥 Apple Silicon &amp; Intel</span>
+</div>
+
+<!-- ── Install guide ──────────────────────────────────────── -->
+<div class="container">
+  <section id="install">
+    <h2><span class="icon">📦</span>Installation</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <h3>Download the DMG</h3>
+          <p>Click the button above to download <code>JindAI-&lt;version&gt;.dmg</code> for your Mac.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <h3>Open the installer</h3>
+          <p>Double-click the DMG, then drag <strong>JindAI</strong> into your <strong>Applications</strong> folder.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <h3>First launch (Gatekeeper)</h3>
+          <p>
+            macOS will warn about an unidentified developer.
+            <strong>Right-click</strong> JindAI → <strong>Open</strong> → click <strong>Open</strong> again.
+            You only need to do this once.
+          </p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <h3>Select your adapter &amp; model</h3>
+          <p>
+            Click the adapter pill in the top bar, choose <strong>Select Adapter</strong>,
+            then pick your AI provider and enter your API key when prompted.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CLI section ──────────────────────────────────────── -->
+  <section id="cli">
+    <h2><span class="icon">⌨️</span>JindAI CLI</h2>
+    <p style="color:var(--muted); margin-bottom:1.5rem; font-size:.95rem;">
+      The <code>jindai-cli</code> binary lets you control JindAI from any terminal —
+      launch the app, switch adapters and models, or run sessions inline.
+    </p>
+    <div class="cli-block">
+      <div><span class="prompt">$ </span><span class="cmd">jindai-cli --help</span></div>
+      <div>&nbsp;</div>
+      <div><span class="cmt"># Launch the GUI window</span></div>
+      <div><span class="prompt">$ </span><span class="cmd">jindai-cli /a</span></div>
+      <div>&nbsp;</div>
+      <div><span class="cmt"># Switch AI adapter</span></div>
+      <div><span class="prompt">$ </span><span class="cmd">jindai-cli /adapter opencode</span></div>
+      <div>&nbsp;</div>
+      <div><span class="cmt"># Switch model</span></div>
+      <div><span class="prompt">$ </span><span class="cmd">jindai-cli /model claude-sonnet-4-5</span></div>
+      <div>&nbsp;</div>
+      <div><span class="cmt"># Test the current connection</span></div>
+      <div><span class="prompt">$ </span><span class="cmd">jindai-cli /test</span></div>
+    </div>
+
+    <p style="margin-top:1.5rem; font-size:.88rem; color:var(--muted);">
+      Download the standalone CLI binary from the
+      <a href="https://github.com/kul1/jindai_download/releases/latest"
+         style="color:var(--accent)">latest release</a>
+      page (<code>jindai-cli-macos-arm64</code> or <code>jindai-cli-macos-x86_64</code>),
+      then make it executable:
+    </p>
+    <div class="cli-block" style="margin-top:.75rem;">
+      <div><span class="prompt">$ </span><span class="cmd">chmod +x ~/Downloads/jindai-cli-macos-arm64</span></div>
+      <div><span class="prompt">$ </span><span class="cmd">sudo mv ~/Downloads/jindai-cli-macos-arm64 /usr/local/bin/jindai-cli</span></div>
+    </div>
+  </section>
+
+  <!-- ── Support / FAQ ────────────────────────────────────── -->
+  <section id="support">
+    <h2><span class="icon">🛟</span>Support &amp; FAQ</h2>
+    <div class="faq">
+
+      <details>
+        <summary>macOS says "JindAI cannot be opened because the developer cannot be verified"</summary>
+        <p>
+          This is a standard Gatekeeper warning for apps not yet in the Mac App Store.
+          Right-click (or Control-click) JindAI.app → <strong>Open</strong> → click <strong>Open</strong>.
+          After the first approval macOS remembers your choice.
+        </p>
+      </details>
+
+      <details>
+        <summary>The app opens but shows "No adapter loaded"</summary>
+        <p>
+          Click the adapter pill at the top → <strong>Select Adapter</strong> → choose your provider
+          (OpenCode, Anthropic, etc.) and enter your API key.
+          The setting is saved per terminal/session automatically.
+        </p>
+      </details>
+
+      <details>
+        <summary>How do I update JindAI?</summary>
+        <p>
+          Download the latest DMG from the
+          <a href="https://github.com/kul1/jindai_download/releases">Releases page</a>
+          and drag the new app into Applications, replacing the old one.
+          Your settings and session history are preserved.
+        </p>
+      </details>
+
+      <details>
+        <summary>Where are my settings stored?</summary>
+        <p>
+          Settings are stored in <code>~/Library/Application Support/JindAI/</code>.
+          Per-terminal configs live in the <code>terminals/</code> subdirectory.
+          You can back up or copy this folder between machines.
+        </p>
+      </details>
+
+      <details>
+        <summary>Can I use JindAI without an internet connection?</summary>
+        <p>
+          JindAI requires a network connection to reach your AI provider's API.
+          The app itself is fully local — no data is sent anywhere except your configured adapter endpoint.
+        </p>
+      </details>
+
+      <details>
+        <summary>How do I report a bug or request a feature?</summary>
+        <p>
+          Open an issue on the
+          <a href="https://github.com/kul1/jindai_download/issues">Issues page</a>
+          of this repository. Please include your macOS version, JindAI version,
+          and steps to reproduce.
+        </p>
+      </details>
+
+    </div>
+  </section>
+</div>
+
+<!-- ── Footer ─────────────────────────────────────────────── -->
+<footer>
+  <p>Copyright &copy; 2026 Prateep Kul &mdash; All rights reserved.</p>
+  <p style="margin-top:.4rem;">
+    <a href="LICENSE.TXT">License</a> &nbsp;·&nbsp;
+    <a href="https://github.com/kul1/jindai_download/releases">Releases</a> &nbsp;·&nbsp;
+    <a href="https://github.com/kul1/jindai_download/issues">Issues</a>
+  </p>
+</footer>
+
+</body>
+</html>
