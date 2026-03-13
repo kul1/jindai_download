@@ -1,0 +1,4 @@
+Copyright (c) 2026 Prateep Kul
+All rights reserved.
+This repository distributes compiled builds of JindAI.
+The source code is not licensed for public use, copying, modification, or redistribution.
