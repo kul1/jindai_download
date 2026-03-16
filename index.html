@@ -229,7 +229,7 @@
 
 <!-- ── Hero ───────────────────────────────────────────────── -->
 <div class="hero">
-  <div class="badge">macOS · Latest Release</div>
+  <div class="badge" id="version-badge">macOS · Checking version…</div>
   <h1>Your AI assistant,<br /><span>right on your desktop</span></h1>
   <p class="subtitle">
     JindAI brings powerful AI models to a native macOS window and CLI —
@@ -237,7 +237,7 @@
   </p>
 
   <div class="download-grid">
-    <a class="btn btn-primary"
+    <a class="btn btn-primary" id="dmg-btn"
        href="https://github.com/kul1/jindai_download/releases/latest/download/JindAI-latest.dmg">
       ⬇ Download for Mac (Apple Silicon)
     </a>
@@ -435,6 +435,57 @@
     <a href="#sponsor">Support</a>
   </p>
 </footer>
+
+
+<script>
+  // Dynamically resolve the latest release DMG from GitHub API
+  (function () {
+    var REPO = "kul1/jindai_download";
+    var API  = "https://api.github.com/repos/" + REPO + "/releases/latest";
+
+    fetch(API, { headers: { Accept: "application/vnd.github+json" } })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var tag     = data.tag_name || "";
+        var version = tag.replace(/^v/, "");
+
+        // Find the versioned DMG asset (prefer JindAI-latest.dmg, fall back to JindAI-X.Y.Z.dmg)
+        var assets  = data.assets || [];
+        var dmgUrl  = "";
+        for (var i = 0; i < assets.length; i++) {
+          if (assets[i].name === "JindAI-latest.dmg") {
+            dmgUrl = assets[i].browser_download_url;
+            break;
+          }
+        }
+        if (!dmgUrl) {
+          for (var j = 0; j < assets.length; j++) {
+            if (/\.dmg$/i.test(assets[j].name)) {
+              dmgUrl = assets[j].browser_download_url;
+              break;
+            }
+          }
+        }
+
+        // Update badge
+        var badge = document.getElementById("version-badge");
+        if (badge && version) {
+          badge.textContent = "macOS · v" + version;
+        }
+
+        // Update download button
+        var btn = document.getElementById("dmg-btn");
+        if (btn && dmgUrl) {
+          btn.href = dmgUrl;
+          btn.textContent = "⬇ Download for Mac (Apple Silicon)";
+          if (version) btn.textContent += "  v" + version;
+        }
+      })
+      .catch(function () {
+        // Silent fallback — static href already set
+      });
+  })();
+</script>
 
 </body>
 </html>
