@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>JindAI — Download</title>
+  <title>JindAI — AI Desktop for Developers</title>
   <style>
     :root {
       --bg:        #0f1117;
@@ -37,21 +37,12 @@
       display: flex; align-items: baseline; gap: .5rem;
     }
     .logo span { color: var(--accent); }
-    /* "by Kulsoft.Net LLC." — deliberately different face + weight so it
-       reads as a credit line rather than part of the wordmark. */
     .logo-by {
       font-family: Georgia, "Times New Roman", serif;
-      font-size: .78rem;
-      font-weight: 400;
-      font-style: italic;
-      letter-spacing: .01em;
-      color: var(--muted);
+      font-size: .78rem; font-weight: 400; font-style: italic;
+      letter-spacing: .01em; color: var(--muted);
     }
-    .logo-by b {
-      font-weight: 600;
-      font-style: normal;
-      color: var(--text);
-    }
+    .logo-by b { font-weight: 600; font-style: normal; color: var(--text); }
     nav ul { list-style: none; display: flex; gap: 2rem; }
     nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
     nav a:hover { color: var(--text); }
@@ -64,21 +55,15 @@
     }
     .badge {
       display: inline-block;
-      background: rgba(108,142,255,.15);
-      color: var(--accent);
+      background: rgba(108,142,255,.15); color: var(--accent);
       border: 1px solid rgba(108,142,255,.3);
-      border-radius: 999px;
-      padding: .25rem .9rem;
-      font-size: .78rem; font-weight: 600;
-      letter-spacing: .04em;
+      border-radius: 999px; padding: .25rem .9rem;
+      font-size: .78rem; font-weight: 600; letter-spacing: .04em;
       margin-bottom: 1.5rem;
     }
     h1 {
-      font-size: clamp(2rem, 5vw, 3.2rem);
-      font-weight: 800;
-      letter-spacing: -.03em;
-      line-height: 1.15;
-      margin-bottom: 1rem;
+      font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800;
+      letter-spacing: -.03em; line-height: 1.15; margin-bottom: 1rem;
     }
     h1 span { color: var(--accent); }
     .subtitle {
@@ -97,39 +82,107 @@
       font-size: .95rem; font-weight: 600; cursor: pointer;
       text-decoration: none; transition: all .15s;
     }
-    .btn-primary {
-      background: var(--accent); color: #fff;
-      border: 1px solid transparent;
-    }
+    .btn-primary { background: var(--accent); color: #fff; border: 1px solid transparent; }
     .btn-primary:hover { background: #7fa0ff; transform: translateY(-1px); }
-    .btn-secondary {
-      background: var(--surface); color: var(--text);
-      border: 1px solid var(--border);
-    }
+    .btn-secondary { background: var(--surface); color: var(--text); border: 1px solid var(--border); }
     .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
     .note { font-size: .78rem; color: var(--muted); margin-top: .5rem; }
 
     /* ── Requirements strip ──────────────────────────── */
     .req-strip {
       background: var(--surface);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
       padding: .75rem 2rem;
       display: flex; justify-content: center; gap: 2.5rem;
-      font-size: .82rem; color: var(--muted);
-      flex-wrap: wrap;
+      font-size: .82rem; color: var(--muted); flex-wrap: wrap;
     }
     .req-strip span { display: flex; align-items: center; gap: .4rem; }
 
     /* ── Content sections ────────────────────────────── */
-    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .container { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
     section { padding: 4rem 0; border-bottom: 1px solid var(--border); }
     section:last-of-type { border-bottom: none; }
-    h2 {
-      font-size: 1.5rem; font-weight: 700;
-      margin-bottom: 1.5rem; color: var(--text);
-    }
+    h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text); }
     h2 .icon { margin-right: .4rem; }
+
+    /* ── Feature cards ───────────────────────────────── */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+    .feature-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.4rem 1.6rem;
+      transition: border-color .15s;
+    }
+    .feature-card:hover { border-color: var(--accent); }
+    .feature-icon { font-size: 1.8rem; margin-bottom: .75rem; display: block; }
+    .feature-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: .4rem; }
+    .feature-card p { font-size: .88rem; color: var(--muted); line-height: 1.55; }
+    .feature-card .tag {
+      display: inline-block; margin-top: .75rem;
+      background: rgba(108,142,255,.12); color: var(--accent);
+      border-radius: 999px; padding: .15rem .65rem;
+      font-size: .72rem; font-weight: 600; letter-spacing: .04em;
+    }
+
+    /* ── Workflow steps ──────────────────────────────── */
+    .workflow {
+      display: flex; gap: 0; align-items: stretch;
+      flex-wrap: wrap;
+    }
+    .workflow-step {
+      flex: 1; min-width: 200px;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 0; padding: 2rem 1.6rem;
+      position: relative;
+    }
+    .workflow-step:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .workflow-step:last-child  { border-radius: 0 var(--radius) var(--radius) 0; }
+    .workflow-step + .workflow-step { border-left: none; }
+    @media (max-width: 640px) {
+      .workflow-step { border-radius: 0 !important; border-left: 1px solid var(--border) !important; }
+      .workflow-step:first-child { border-radius: var(--radius) var(--radius) 0 0 !important; }
+      .workflow-step:last-child  { border-radius: 0 0 var(--radius) var(--radius) !important; }
+    }
+    .workflow-num {
+      width: 2.2rem; height: 2.2rem;
+      background: rgba(108,142,255,.15); color: var(--accent);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 1rem; margin-bottom: 1rem;
+    }
+    .workflow-step .icon { font-size: 1.6rem; margin-bottom: .5rem; display: block; }
+    .workflow-step h3 { font-size: 1rem; font-weight: 700; margin-bottom: .5rem; }
+    .workflow-step p { font-size: .87rem; color: var(--muted); line-height: 1.55; }
+    .workflow-arrow {
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent); font-size: 1.4rem; padding: 0 .4rem;
+      align-self: center;
+    }
+    @media (max-width: 640px) { .workflow-arrow { display: none; } }
+
+    /* ── Adapters grid ───────────────────────────────── */
+    .adapters-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: .8rem;
+    }
+    .adapter-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.1rem 1.2rem;
+      text-align: center; transition: border-color .15s;
+    }
+    .adapter-card:hover { border-color: var(--accent2); }
+    .adapter-card .a-icon { font-size: 1.5rem; margin-bottom: .4rem; display: block; }
+    .adapter-card h4 { font-size: .9rem; font-weight: 700; margin-bottom: .2rem; }
+    .adapter-card p { font-size: .78rem; color: var(--muted); }
+    .adapter-card .a-badge {
+      display: inline-block; margin-top: .5rem;
+      background: rgba(52,211,153,.1); color: var(--success);
+      border-radius: 999px; padding: .1rem .55rem;
+      font-size: .68rem; font-weight: 600; letter-spacing: .04em;
+    }
 
     /* ── Install steps ───────────────────────────────── */
     .steps { display: flex; flex-direction: column; gap: 1rem; }
@@ -139,33 +192,24 @@
       border-radius: var(--radius); padding: 1.2rem 1.4rem;
     }
     .step-num {
-      flex-shrink: 0;
-      width: 2rem; height: 2rem;
-      background: rgba(108,142,255,.15);
-      color: var(--accent);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; width: 2rem; height: 2rem;
+      background: rgba(108,142,255,.15); color: var(--accent);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
       font-weight: 700; font-size: .9rem;
     }
     .step-body h3 { font-size: .95rem; font-weight: 600; margin-bottom: .25rem; }
     .step-body p  { font-size: .88rem; color: var(--muted); }
     code {
-      background: rgba(255,255,255,.08);
-      padding: .1em .4em; border-radius: 4px;
-      font-family: "SF Mono", "Fira Code", monospace;
-      font-size: .85em;
+      background: rgba(255,255,255,.08); padding: .1em .4em; border-radius: 4px;
+      font-family: "SF Mono", "Fira Code", monospace; font-size: .85em;
     }
 
     /* ── CLI section ─────────────────────────────────── */
     .cli-block {
-      background: #0d0f18;
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.4rem 1.6rem;
+      background: #0d0f18; border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.4rem 1.6rem;
       font-family: "SF Mono", "Fira Code", monospace;
-      font-size: .88rem;
-      line-height: 1.9;
-      overflow-x: auto;
+      font-size: .88rem; line-height: 1.9; overflow-x: auto;
     }
     .cli-block .prompt { color: var(--accent2); user-select: none; }
     .cli-block .cmd    { color: var(--text); }
@@ -174,45 +218,27 @@
     /* ── FAQ ────────────────────────────────────────── */
     .faq { display: flex; flex-direction: column; gap: .75rem; }
     details {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); overflow: hidden;
     }
     summary {
-      padding: 1rem 1.4rem;
-      font-weight: 600; font-size: .95rem;
+      padding: 1rem 1.4rem; font-weight: 600; font-size: .95rem;
       cursor: pointer; list-style: none;
       display: flex; justify-content: space-between; align-items: center;
     }
     summary::after { content: "+"; color: var(--accent); font-size: 1.2rem; }
     details[open] summary::after { content: "−"; }
-    details p {
-      padding: 0 1.4rem 1.2rem;
-      color: var(--muted); font-size: .9rem;
-    }
+    details p { padding: 0 1.4rem 1.2rem; color: var(--muted); font-size: .9rem; }
 
     /* ── Support / Sponsor section ───────────────────── */
-    .support-wrap {
-      display: flex; align-items: center; gap: 3rem;
-      flex-wrap: wrap;
-    }
+    .support-wrap { display: flex; align-items: center; gap: 3rem; flex-wrap: wrap; }
     .support-card {
       display: flex; flex-direction: column; align-items: center; gap: .75rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.8rem 2rem;
-      flex-shrink: 0;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.8rem 2rem; flex-shrink: 0;
     }
-    .paypal-qr {
-      width: 180px; height: 180px;
-      border-radius: 8px;
-      display: block;
-    }
-    .support-label {
-      font-size: .82rem; color: var(--muted); text-align: center;
-    }
+    .paypal-qr { width: 180px; height: 180px; border-radius: 8px; display: block; }
+    .support-label { font-size: .82rem; color: var(--muted); text-align: center; }
     .support-text { flex: 1; min-width: 220px; }
     .support-text p { color: var(--muted); font-size: .95rem; margin-bottom: 1rem; }
     .support-text ul {
@@ -223,27 +249,29 @@
 
     /* ── Footer ──────────────────────────────────────── */
     footer {
-      text-align: center;
-      padding: 2.5rem 1rem;
+      text-align: center; padding: 2.5rem 1rem;
       font-size: .8rem; color: var(--muted);
       border-top: 1px solid var(--border);
     }
-    footer a { color: var(--accent); text-decoration: none; }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--text); }
   </style>
 </head>
 <body>
 
-<!-- ── Navigation ─────────────────────────────────────────── -->
+<!-- ── Nav ──────────────────────────────────────────────── -->
 <nav>
   <div class="logo">
     Jind<span>AI</span>
     <span class="logo-by">by <b>Kulsoft.Net LLC.</b></span>
   </div>
   <ul>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#workflow">Workflow</a></li>
+    <li><a href="#adapters">Adapters</a></li>
     <li><a href="#install">Install</a></li>
     <li><a href="#cli">CLI</a></li>
     <li><a href="#faq">FAQ</a></li>
-    <li><a href="#sponsor">Support</a></li>
     <li><a href="https://github.com/kul1/jindai_download/releases">Releases</a></li>
   </ul>
 </nav>
@@ -251,10 +279,10 @@
 <!-- ── Hero ───────────────────────────────────────────────── -->
 <div class="hero">
   <div class="badge" id="version-badge">macOS · Checking version…</div>
-  <h1>Your AI assistant,<br /><span>right on your desktop</span></h1>
+  <h1>AI conversations<br /><span>organised around your code</span></h1>
   <p class="subtitle">
-    JindAI brings powerful AI models to a native macOS window and CLI —
-    fast, private, and always at your fingertips.
+    JindAI is a DNA-driven AI desktop for developers — keeps your AI sessions
+    in sync with your git branches, pull requests, and project context.
   </p>
 
   <div class="download-grid">
@@ -267,182 +295,359 @@
       All releases →
     </a>
   </div>
-  <p class="note">macOS 13 Ventura or later · Apple Silicon &amp; Intel · Volunteer to pay if you find it useful</p>
+  <p class="note">macOS 13 Ventura or later · Apple Silicon &amp; Intel · Free to use · Voluntary support welcome</p>
 </div>
 
 <!-- ── Requirements strip ─────────────────────────────────── -->
 <div class="req-strip">
   <span>🍎 macOS 13+</span>
   <span>💾 ~50 MB</span>
-  <span>🔑 Requires API key (OpenCode / Anthropic)</span>
+  <span>🔑 Requires API key</span>
   <span>🖥 Apple Silicon &amp; Intel</span>
+  <span>🔀 git optional but recommended</span>
 </div>
 
-<!-- ── Install guide ──────────────────────────────────────── -->
 <div class="container">
-  <section id="install">
-    <h2><span class="icon">📦</span>Installation</h2>
-    <div class="steps">
-      <div class="step">
-        <div class="step-num">1</div>
-        <div class="step-body">
-          <h3>Download the DMG</h3>
-          <p>Click the button above to download <code>JindAI-&lt;version&gt;.dmg</code> for your Mac.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">2</div>
-        <div class="step-body">
-          <h3>Open the installer</h3>
-          <p>Double-click the DMG, then drag <strong>JindAI</strong> into your <strong>Applications</strong> folder.</p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">3</div>
-        <div class="step-body">
-          <h3>First launch (Gatekeeper)</h3>
-          <p>
-            macOS will warn about an unidentified developer.
-            <strong>Right-click</strong> JindAI → <strong>Open</strong> → click <strong>Open</strong> again.
-            You only need to do this once.
-          </p>
-        </div>
-      </div>
-      <div class="step">
-        <div class="step-num">4</div>
-        <div class="step-body">
-          <h3>Select your adapter &amp; model</h3>
-          <p>
-            Click the adapter pill in the top bar, choose <strong>Select Adapter</strong>,
-            then pick your AI provider and enter your API key when prompted.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ── CLI section ──────────────────────────────────────── -->
-  <section id="cli">
-    <h2><span class="icon">⌨️</span>JindAI CLI</h2>
-    <p style="color:var(--muted); margin-bottom:1.5rem; font-size:.95rem;">
-      The <code>jindai-cli</code> binary lets you control JindAI from any terminal —
-      launch the app, switch adapters and models, or run sessions inline.
+<!-- ── Features ───────────────────────────────────────────── -->
+<section id="features">
+  <h2><span class="icon">✨</span>Key Features</h2>
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <span class="feature-icon">📁</span>
+      <h3>Project Folder Awareness</h3>
+      <p>Point JindAI at any git repo and it reads your branch name, detects the DNA mindmap, and auto-seeds <code>AGENTS.md</code> with project context — so every AI conversation starts with the right background.</p>
+      <span class="tag">CONTEXT</span>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">💾</span>
+      <h3>Sessions per Branch / PR</h3>
+      <p>Save a snapshot of your entire AI session — adapter, model, preview context, conversation — and restore it later. One session per feature branch means you never lose your place between tasks.</p>
+      <span class="tag">PRODUCTIVITY</span>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">🔀</span>
+      <h3>Git-Synced Session Names</h3>
+      <p>New sessions are automatically named after your current git branch. Rename a session and it stays in sync. Sessions live in <code>.jindai/sessions/</code> inside your project repo — they travel with the code.</p>
+      <span class="tag">GIT</span>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">🧬</span>
+      <h3>DNA Mindmap</h3>
+      <p>Every project has a <code>dna/index.mm</code> mindmap that defines its buttons, actions, and AI presets. Open it visually, click nodes to expand, and the whole UI adapts to your project's DNA.</p>
+      <span class="tag">CUSTOMISATION</span>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">🤖</span>
+      <h3>Multi-Adapter AI</h3>
+      <p>Switch between OpenCode, Anthropic Claude, OpenAI, Grok, and more in one click. Each adapter remembers its last model. Swap providers without restarting or losing your conversation.</p>
+      <span class="tag">ADAPTERS</span>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">🖥</span>
+      <h3>Desktop Send &amp; Bridge</h3>
+      <p>Send prompts directly to Claude.ai, ChatGPT, or any browser-based AI via clipboard bridge. Chain the AI response back into JindAI automatically for a seamless hybrid workflow.</p>
+      <span class="tag">AUTOMATION</span>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">🎨</span>
+      <h3>Dark Themes</h3>
+      <p>Ships with multiple dark themes (Midnight, Deep Space, Emerald, Sakura Dusk, and more). Switch themes from the toolbar — preference is saved per session.</p>
+      <span class="tag">UI</span>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">⚡</span>
+      <h3>CLI — <code>jindai-cli</code></h3>
+      <p>Full command-line interface for switching adapters, sending prompts, running tests, and scripting AI workflows. Integrates with shell scripts and CI pipelines.</p>
+      <span class="tag">CLI</span>
+    </div>
+
+    <div class="feature-card">
+      <span class="feature-icon">🔁</span>
+      <h3>Auto-Update</h3>
+      <p>JindAI checks for new releases in the background and downloads updates silently. A green indicator appears when an update is ready — no browser needed.</p>
+      <span class="tag">MAINTENANCE</span>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Workflow ────────────────────────────────────────────── -->
+<section id="workflow">
+  <h2><span class="icon">🔄</span>The Folder → Session → PR Workflow</h2>
+  <p style="color:var(--muted);margin-bottom:2rem;font-size:.95rem;">
+    JindAI is designed around a simple mental model: one project folder, one session per task, one session per pull request. Here's how it fits together:
+  </p>
+
+  <div class="workflow">
+    <div class="workflow-step">
+      <div class="workflow-num">1</div>
+      <span class="icon">📁</span>
+      <h3>Set your Project Folder</h3>
+      <p>Click <strong>📁 Folder</strong> in the toolbar and pick your git repository root. JindAI reads your current branch, detects your DNA mindmap, and auto-seeds <code>AGENTS.md</code> with project context. From this moment, every session name is derived from your branch.</p>
+    </div>
+    <div class="workflow-arrow">→</div>
+    <div class="workflow-step">
+      <div class="workflow-num">2</div>
+      <span class="icon">💾</span>
+      <h3>Create a Session per Issue</h3>
+      <p>Open <strong>Sessions</strong> and click <strong>New</strong>. The name is pre-filled with your current branch (e.g. <code>fix-auth-bug</code>). Save your conversation at any point — adapter settings, preview context, and conversation snapshot are all stored. Load it tomorrow and resume instantly.</p>
+    </div>
+    <div class="workflow-arrow">→</div>
+    <div class="workflow-step">
+      <div class="workflow-num">3</div>
+      <span class="icon">🔀</span>
+      <h3>Sessions follow your PRs</h3>
+      <p>When you push a PR, rename the session to match. Sessions live in <code>.jindai/sessions/</code> inside your repo and are committed alongside the code. Your team can see which AI conversations belong to which feature — without sharing API keys.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:2rem;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.6rem;">
+    <p style="font-size:.9rem;color:var(--muted);">
+      💡 <strong style="color:var(--text)">Tip:</strong>
+      When you first open JindAI with no project set, the Preview panel shows a Getting Started guide. Once you pick a folder, JindAI shows your project's <code>AGENTS.md</code> in Preview — giving every AI conversation immediate access to your project's purpose, architecture, and conventions.
     </p>
-    <div class="cli-block">
-      <div><span class="prompt">$ </span><span class="cmd">jindai-cli --help</span></div>
-      <div>&nbsp;</div>
-      <div><span class="cmt"># Launch the GUI window</span></div>
-      <div><span class="prompt">$ </span><span class="cmd">jindai-cli /a</span></div>
-      <div>&nbsp;</div>
-      <div><span class="cmt"># Switch AI adapter</span></div>
-      <div><span class="prompt">$ </span><span class="cmd">jindai-cli /adapter opencode</span></div>
-      <div>&nbsp;</div>
-      <div><span class="cmt"># Switch model</span></div>
-      <div><span class="prompt">$ </span><span class="cmd">jindai-cli /model claude-sonnet-4-5</span></div>
-      <div>&nbsp;</div>
-      <div><span class="cmt"># Test the current connection</span></div>
-      <div><span class="prompt">$ </span><span class="cmd">jindai-cli /test</span></div>
+  </div>
+</section>
+
+<!-- ── Adapters ────────────────────────────────────────────── -->
+<section id="adapters">
+  <h2><span class="icon">🤖</span>Supported AI Adapters</h2>
+  <p style="color:var(--muted);margin-bottom:2rem;font-size:.95rem;">
+    Switch providers in one click — no restart needed. Each adapter remembers its last model.
+  </p>
+  <div class="adapters-grid">
+
+    <div class="adapter-card">
+      <span class="a-icon">⚡</span>
+      <h4>OpenCode</h4>
+      <p>Local terminal AI — fast, private, no cloud round-trip</p>
+      <span class="a-badge">RECOMMENDED</span>
     </div>
 
-    <p style="margin-top:1.5rem; font-size:.88rem; color:var(--muted);">
-      Download the standalone CLI binary from the
-      <a href="https://github.com/kul1/jindai_download/releases/latest"
-         style="color:var(--accent)">latest release</a>
-      page (<code>jindai-cli-macos-arm64</code> or <code>jindai-cli-macos-x86_64</code>),
-      then make it executable:
-    </p>
-    <div class="cli-block" style="margin-top:.75rem;">
-      <div><span class="prompt">$ </span><span class="cmd">chmod +x ~/Downloads/jindai-cli-macos-arm64</span></div>
-      <div><span class="prompt">$ </span><span class="cmd">sudo mv ~/Downloads/jindai-cli-macos-arm64 /usr/local/bin/jindai-cli</span></div>
+    <div class="adapter-card">
+      <span class="a-icon">🟣</span>
+      <h4>Anthropic Claude</h4>
+      <p>Claude 3.5 / 4 Sonnet, Opus, Haiku via API</p>
     </div>
-  </section>
 
-  <!-- ── FAQ ──────────────────────────────────────────────── -->
-  <section id="faq">
-    <h2><span class="icon">🛟</span>FAQ</h2>
-    <div class="faq">
-
-      <details>
-        <summary>macOS says "JindAI cannot be opened because the developer cannot be verified"</summary>
-        <p>
-          This is a standard Gatekeeper warning for apps not yet in the Mac App Store.
-          Right-click (or Control-click) JindAI.app → <strong>Open</strong> → click <strong>Open</strong>.
-          After the first approval macOS remembers your choice.
-        </p>
-      </details>
-
-      <details>
-        <summary>The app opens but shows "No adapter loaded"</summary>
-        <p>
-          Click the adapter pill at the top → <strong>Select Adapter</strong> → choose your provider
-          (OpenCode, Anthropic, etc.) and enter your API key.
-          The setting is saved per terminal/session automatically.
-        </p>
-      </details>
-
-      <details>
-        <summary>How do I update JindAI?</summary>
-        <p>
-          Download the latest DMG from the
-          <a href="https://github.com/kul1/jindai_download/releases">Releases page</a>
-          and drag the new app into Applications, replacing the old one.
-          Your settings and session history are preserved.
-        </p>
-      </details>
-
-      <details>
-        <summary>Where are my settings stored?</summary>
-        <p>
-          Settings are stored in <code>~/Library/Application Support/JindAI/</code>.
-          Per-terminal configs live in the <code>terminals/</code> subdirectory.
-          You can back up or copy this folder between machines.
-        </p>
-      </details>
-
-      <details>
-        <summary>Can I use JindAI without an internet connection?</summary>
-        <p>
-          JindAI requires a network connection to reach your AI provider's API.
-          The app itself is fully local — no data is sent anywhere except your configured adapter endpoint.
-        </p>
-      </details>
-
-      <details>
-        <summary>How do I report a bug or request a feature?</summary>
-        <p>
-          Open an issue on the
-          <a href="https://github.com/kul1/jindai_download/issues">Issues page</a>
-          of this repository. Please include your macOS version, JindAI version,
-          and steps to reproduce.
-        </p>
-      </details>
-
+    <div class="adapter-card">
+      <span class="a-icon">🟢</span>
+      <h4>OpenAI</h4>
+      <p>GPT-4o, GPT-4 Turbo, o1 and o3 models</p>
     </div>
-  </section>
 
-  <!-- ── Sponsor / Support ────────────────────────────────── -->
-  <section id="sponsor">
-    <h2><span class="icon">❤️</span>Support this Project</h2>
-    <div class="support-wrap">
-      <div class="support-card">
-        <img src="paypal-qr.png" alt="Scan to support via PayPal" class="paypal-qr" />
-        <p class="support-label">📷 Just point your phone camera — no app needed</p>
-      </div>
-      <div class="support-text">
-        <p>
-          JindAI is free to use and always will be. If it saves you time,
-          boosts your workflow, or you simply want to say thanks — a voluntary
-          contribution is genuinely appreciated and helps keep the project going.
-        </p>
-        <ul>
-          <li>No subscription, no obligation</li>
-          <li>Any amount is welcome</li>
-          <li>Contributions go directly to the developer</li>
-          <li>Scan the QR code with your phone camera — no app needed</li>
-        </ul>
+    <div class="adapter-card">
+      <span class="a-icon">🔵</span>
+      <h4>Grok / xAI</h4>
+      <p>Grok-2 and Grok-3 models via xAI API</p>
+    </div>
+
+    <div class="adapter-card">
+      <span class="a-icon">🔶</span>
+      <h4>Desktop Bridge</h4>
+      <p>Send to Claude.ai, ChatGPT, or any browser AI via clipboard</p>
+    </div>
+
+    <div class="adapter-card">
+      <span class="a-icon">➕</span>
+      <h4>More adapters</h4>
+      <p>Pluggable adapter system — new providers added regularly</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── Install guide ──────────────────────────────────────── -->
+<section id="install">
+  <h2><span class="icon">📦</span>Installation</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Download the DMG</h3>
+        <p>Click the download button above to get <code>JindAI-&lt;version&gt;.dmg</code> for your Mac.</p>
       </div>
     </div>
-  </section>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Open the installer</h3>
+        <p>Double-click the DMG, then drag <strong>JindAI</strong> into your <strong>Applications</strong> folder.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>First launch — bypass Gatekeeper</h3>
+        <p>Right-click <strong>JindAI.app</strong> → <strong>Open</strong> → <strong>Open</strong>. macOS remembers this after the first approval.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-body">
+        <h3>Pick an adapter &amp; API key</h3>
+        <p>Click the adapter pill in the top bar → <strong>Select Adapter</strong> → choose your AI provider and enter your API key.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-body">
+        <h3>Set your Project Folder</h3>
+        <p>Click <strong>📁 Folder</strong> in the toolbar and pick your git repository. JindAI reads your branch and scaffolds <code>dna/index.mm</code> and <code>AGENTS.md</code> automatically.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-body">
+        <h3>Create your first Session</h3>
+        <p>Open <strong>Sessions → New</strong>. The name defaults to your branch name. Save a session at the start of each feature or PR so you can always restore your AI context later.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CLI section ──────────────────────────────────────────── -->
+<section id="cli">
+  <h2><span class="icon">⌨️</span>CLI — <code>jindai-cli</code></h2>
+  <p style="color:var(--muted);margin-bottom:1.5rem;font-size:.9rem;">
+    A separate binary for shell scripting, CI pipelines, and terminal-first workflows.
+  </p>
+  <div class="cli-block">
+    <div><span class="cmt"># Show all commands</span></div>
+    <div><span class="prompt">$ </span><span class="cmd">jindai-cli --help</span></div>
+    <br/>
+    <div><span class="cmt"># Send a prompt</span></div>
+    <div><span class="prompt">$ </span><span class="cmd">jindai-cli /a "Explain this function"</span></div>
+    <br/>
+    <div><span class="cmt"># Switch AI adapter</span></div>
+    <div><span class="prompt">$ </span><span class="cmd">jindai-cli /adapter opencode</span></div>
+    <br/>
+    <div><span class="cmt"># Switch model</span></div>
+    <div><span class="prompt">$ </span><span class="cmd">jindai-cli /model claude-sonnet-4-5</span></div>
+    <br/>
+    <div><span class="cmt"># Run a quick test</span></div>
+    <div><span class="prompt">$ </span><span class="cmd">jindai-cli /test</span></div>
+  </div>
+  <p style="margin-top:1.2rem;font-size:.88rem;color:var(--muted);">Download the CLI binary separately:</p>
+  <div style="margin-top:.75rem;">
+    <a href="https://github.com/kul1/jindai_download/releases/latest"
+       class="btn btn-secondary" style="font-size:.88rem;">
+      ⬇ Download jindai-cli →
+    </a>
+  </div>
+  <div class="cli-block" style="margin-top:1.2rem;">
+    <div><span class="cmt"># Install to PATH</span></div>
+    <div><span class="prompt">$ </span><span class="cmd">chmod +x ~/Downloads/jindai-cli-macos-arm64</span></div>
+    <div><span class="prompt">$ </span><span class="cmd">sudo mv ~/Downloads/jindai-cli-macos-arm64 /usr/local/bin/jindai-cli</span></div>
+  </div>
+</section>
+
+<!-- ── FAQ ──────────────────────────────────────────────────── -->
+<section id="faq">
+  <h2><span class="icon">🛟</span>FAQ</h2>
+  <div class="faq">
+
+    <details>
+      <summary>macOS says "JindAI cannot be opened because the developer cannot be verified"</summary>
+      <p>This is a standard Gatekeeper warning for apps not yet in the Mac App Store.
+         Right-click (or Control-click) JindAI.app → <strong>Open</strong> → click <strong>Open</strong>.
+         After the first approval macOS remembers your choice.</p>
+    </details>
+
+    <details>
+      <summary>The app opens but shows "No adapter loaded"</summary>
+      <p>Click the adapter pill at the top → <strong>Select Adapter</strong> → choose your provider
+         (OpenCode, Anthropic, etc.) and enter your API key.
+         The setting is saved per terminal/session automatically.</p>
+    </details>
+
+    <details>
+      <summary>What is a Project Folder and why do I need it?</summary>
+      <p>The Project Folder is the root of your git repository. Setting it unlocks:
+         branch-aware session naming, DNA mindmap auto-detection, and <code>AGENTS.md</code>
+         auto-seeding. Without a project folder JindAI still works, but session names
+         are generic and git context is unavailable. Click <strong>📁 Folder</strong> in the toolbar to set it.</p>
+    </details>
+
+    <details>
+      <summary>What are Sessions and when should I create one?</summary>
+      <p>A Session is a full snapshot of your AI conversation context — adapter, model,
+         preview/pretext, and conversation history. Create a new session at the start of each
+         feature branch or pull request so you can always restore exactly where you left off.
+         Sessions are stored in <code>.jindai/sessions/</code> inside your project repo and travel with your code.</p>
+    </details>
+
+    <details>
+      <summary>How do Sessions relate to Git branches and PRs?</summary>
+      <p>When you create a new session, the name defaults to your current git branch
+         (e.g. <code>fix-auth-bug</code>). Rename sessions to match your PR title.
+         Since sessions live inside the repo, your team sees which AI conversations
+         belong to which feature — without sharing credentials.</p>
+    </details>
+
+    <details>
+      <summary>How do I update JindAI?</summary>
+      <p>JindAI checks for updates in the background on startup. When a new release is ready,
+         a green indicator appears in the About panel. You can also download the latest DMG from the
+         <a href="https://github.com/kul1/jindai_download/releases">Releases page</a>
+         and drag the new app into Applications. Your sessions, settings, and project data are preserved.</p>
+    </details>
+
+    <details>
+      <summary>Where are my settings and sessions stored?</summary>
+      <p>App settings: <code>~/Library/Application Support/JindAI/</code><br/>
+         Sessions (snapshot manager): <code>&lt;project&gt;/.jindai/sessions/</code> or the fallback above.<br/>
+         Auto-save sessions (V2): <code>~/Library/Application Support/JindAI/sessions/</code><br/>
+         You can back up or copy these folders between machines.</p>
+    </details>
+
+    <details>
+      <summary>Can I use JindAI without an internet connection?</summary>
+      <p>JindAI requires a network connection to reach your AI provider's API.
+         The app itself is fully local — no data is sent anywhere except your configured adapter endpoint.</p>
+    </details>
+
+    <details>
+      <summary>How do I report a bug or request a feature?</summary>
+      <p>Open an issue on the
+         <a href="https://github.com/kul1/jindai_download/issues">Issues page</a>.
+         Please include your macOS version, JindAI version (shown in the About dialog),
+         and steps to reproduce.</p>
+    </details>
+
+  </div>
+</section>
+
+<!-- ── Sponsor / Support ────────────────────────────────── -->
+<section id="sponsor">
+  <h2><span class="icon">❤️</span>Support this Project</h2>
+  <div class="support-wrap">
+    <div class="support-card">
+      <img src="paypal-qr.png" alt="Scan to support via PayPal" class="paypal-qr" />
+      <p class="support-label">📷 Just point your phone camera — no app needed</p>
+    </div>
+    <div class="support-text">
+      <p>JindAI is free to use and always will be. If it saves you time,
+         boosts your workflow, or you simply want to say thanks — a voluntary
+         contribution is genuinely appreciated and helps keep the project going.</p>
+      <ul>
+        <li>No subscription, no obligation</li>
+        <li>Any amount is welcome</li>
+        <li>Contributions go directly to the developer</li>
+        <li>Scan the QR code with your phone camera — no app needed</li>
+      </ul>
+    </div>
+  </div>
+</section>
 
 </div>
 
@@ -459,7 +664,6 @@
 
 
 <script>
-  // Dynamically resolve the latest release DMG from GitHub API
   (function () {
     var REPO = "kul1/jindai_download";
     var API  = "https://api.github.com/repos/" + REPO + "/releases/latest";
@@ -470,7 +674,6 @@
         var tag     = data.tag_name || "";
         var version = tag.replace(/^v/, "");
 
-        // Find the versioned DMG asset (prefer JindAI-latest.dmg, fall back to JindAI-X.Y.Z.dmg)
         var assets  = data.assets || [];
         var dmgUrl  = "";
         for (var i = 0; i < assets.length; i++) {
@@ -488,13 +691,9 @@
           }
         }
 
-        // Update badge
         var badge = document.getElementById("version-badge");
-        if (badge && version) {
-          badge.textContent = "macOS · v" + version;
-        }
+        if (badge && version) badge.textContent = "macOS · v" + version;
 
-        // Update download button
         var btn = document.getElementById("dmg-btn");
         if (btn && dmgUrl) {
           btn.href = dmgUrl;
@@ -502,9 +701,7 @@
           if (version) btn.textContent += "  v" + version;
         }
       })
-      .catch(function () {
-        // Silent fallback — static href already set
-      });
+      .catch(function () {});
   })();
 </script>
 
